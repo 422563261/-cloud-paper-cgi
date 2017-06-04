@@ -5,6 +5,8 @@ class Room{
         this.passwd ='';
         this.connectPool =[];
         this.historyData =[];
+        this.historyVideo = [];
+        this.historyChat = [];
     };
 }
 exports.Room =Room;

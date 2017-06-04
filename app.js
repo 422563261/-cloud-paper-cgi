@@ -60,6 +60,6 @@ app.use(function(req ,res ,next){
 
 // route
 app.use('/', apiRouter);
-
+// app.use(express.static('./dist'))
 
 module.exports = app;
