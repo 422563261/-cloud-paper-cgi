@@ -7,7 +7,7 @@ var router = express.Router();
 
 // token
 router.get('/token/create/:passwd?', token.create);
-router.get('/token/destory/:token', token.destory);
+router.get('/token/destroy/:token', token.destory);
 
 // websocket
 // 请求建立连接

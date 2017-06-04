@@ -57,7 +57,7 @@ exports.getRooms = function (req, res) {
 global.IO.on('connection', function (socket) {
 
   if (!socket.request.headers.cookie) {
-    console.log('cookie is empty');
+    // console.log('cookie is empty');
     return;
   }
   var cookieObj = Cookie.parse(socket.request.headers.cookie);
@@ -65,11 +65,11 @@ global.IO.on('connection', function (socket) {
   var token = cookieObj.token;
   var passwd = cookieObj.passwd;
   var room;
-  console.log('client connection use ' + token);
+  // console.log('client connection use ' + token);
 
   // 第一个使用token的为房间所有者
   if (global.TOKENS.indexOf(token) !== -1) {
-    console.log('create room: ' + token);
+    // console.log('create room: ' + token);
     // 销毁token
     global.TOKENS.splice(global.TOKENS.indexOf(token), 1);
     // 创建房间
@@ -117,19 +117,19 @@ global.IO.on('connection', function (socket) {
   //token无效
 
   if (!token || !global.ROOMS[token]) {
-    console.log('token invalid: ' + token);
+    // console.log('token invalid: ' + token);
     socket.disconnect();
     return;
   }
   // passwd无效
   if (global.ROOMS[token].passwd && global.ROOMS[token].passwd !== passwd) {
-    console.log('password illegal');
+    // console.log('password illegal');
     socket.disconnect();
     return;
   }
 
   // 观众连接
-  console.log('add connect pool: ' + token);
+  // console.log('add connect pool: ' + token);
   global.ROOMS[token].connectPool.push(socket);
   // 将所有历史数据推过去
   global.ROOMS[token].historyData.forEach(function (data) {
